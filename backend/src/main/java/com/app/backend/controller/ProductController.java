@@ -3,6 +3,7 @@ package com.app.backend.controller;
 import com.app.backend.model.Product;
 import com.app.backend.service.ProductService;
 import com.app.backend.dto.MessageResponse;
+import com.app.backend.dto.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -44,13 +45,43 @@ public class ProductController {
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        return ResponseEntity.ok(productService.create(product));
+        try {
+            Product created = productService.create(product);
+            ProductResponse response = new ProductResponse(
+                created.getId(),
+                created.getName(),
+                created.getDescription(),
+                created.getPrice(),
+                created.getStock(),
+                created.getActive(),
+                created.getCategory(),
+                created.getSubcategory()
+            );
+            return ResponseEntity.ok(response);
+        } catch (com.app.backend.exception.CustomBadRequestException e) {
+            return ResponseEntity.badRequest().body(new com.app.backend.dto.MessageResponse(e.getMessage()));
+        }
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        return ResponseEntity.ok(productService.update(id, product));
+        try {
+            Product updated = productService.update(id, product);
+            ProductResponse response = new ProductResponse(
+                updated.getId(),
+                updated.getName(),
+                updated.getDescription(),
+                updated.getPrice(),
+                updated.getStock(),
+                updated.getActive(),
+                updated.getCategory(),
+                updated.getSubcategory()
+            );
+            return ResponseEntity.ok(response);
+        } catch (com.app.backend.exception.CustomBadRequestException e) {
+            return ResponseEntity.badRequest().body(new com.app.backend.dto.MessageResponse(e.getMessage()));
+        }
     }
 
     @DeleteMapping(value ="/{id}", produces = "application/json")

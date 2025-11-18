@@ -37,13 +37,21 @@ public class SubcategoryController {
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public ResponseEntity<Subcategory> createSubcategory(@RequestBody Subcategory subcategory) {
-        return ResponseEntity.ok(subcategoryService.create(subcategory));
+        try {
+            return ResponseEntity.ok(subcategoryService.create(subcategory));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public ResponseEntity<Subcategory> updateSubcategory(@PathVariable Long id, @RequestBody Subcategory subcategory) {
-        return ResponseEntity.ok(subcategoryService.update(id, subcategory));
+        try {
+            return ResponseEntity.ok(subcategoryService.update(id, subcategory));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @DeleteMapping(value ="/{id}", produces = "application/json")
