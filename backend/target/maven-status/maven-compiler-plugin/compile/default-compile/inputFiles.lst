@@ -1,11 +1,13 @@
 C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\model\Product.java
 C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\dto\UserCreateRequest.java
 C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\repository\ProductRepository.java
+C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\exception\CustomBadRequestException.java
 C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\security\CustomUserDetailsService.java
 C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\controller\AuthController.java
 C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\service\CategoryService.java
 C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\security\JwtTokenProvider.java
 C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\dto\LoginRequest.java
+C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\dto\ProductResponse.java
 C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\service\SubcategoryService.java
 C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\config\WebConfig.java
 C:\xampp\htdocs\movil\Jeison movil\backend\src\main\java\com\app\backend\dto\UserUpdateRequest.java

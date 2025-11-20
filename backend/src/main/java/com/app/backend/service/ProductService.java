@@ -1,6 +1,8 @@
 package com.app.backend.service;
 
+import com.app.backend.model.Category;
 import com.app.backend.model.Product;
+import com.app.backend.model.Subcategory;
 import com.app.backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

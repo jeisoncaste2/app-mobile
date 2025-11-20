@@ -26,12 +26,26 @@ public class JwtTokenProvider {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpiration);
 
+        // Obtener el rol del usuario
+        String role = authentication.getAuthorities().stream()
+            .findFirst()
+            .map(Object::toString)
+            .orElse("");
+
         return Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(now)
-                .setExpiration(expiryDate)
-                .signWith(getSigningKey())
-                .compact();
+            .setSubject(username)
+            .claim("role", role)
+            .setIssuedAt(now)
+            .setExpiration(expiryDate)
+            .signWith(getSigningKey())
+            .compact();
+        public String getRoleFromToken(String token) {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(getSigningKey())
+                    .parseClaimsJws(token)
+                    .getBody();
+            return claims.get("role", String.class);
+        }
     }
 
     public String getUsernameFromToken(String token) {

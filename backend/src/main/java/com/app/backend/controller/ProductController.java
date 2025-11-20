@@ -44,7 +44,7 @@ public class ProductController {
 
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+    public ResponseEntity<?> createProduct(@RequestBody Product product) {
         try {
             Product created = productService.create(product);
             ProductResponse response = new ProductResponse(
@@ -59,13 +59,13 @@ public class ProductController {
             );
             return ResponseEntity.ok(response);
         } catch (com.app.backend.exception.CustomBadRequestException e) {
-            return ResponseEntity.badRequest().body(new com.app.backend.dto.MessageResponse(e.getMessage()));
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody Product product) {
         try {
             Product updated = productService.update(id, product);
             ProductResponse response = new ProductResponse(
@@ -80,7 +80,7 @@ public class ProductController {
             );
             return ResponseEntity.ok(response);
         } catch (com.app.backend.exception.CustomBadRequestException e) {
-            return ResponseEntity.badRequest().body(new com.app.backend.dto.MessageResponse(e.getMessage()));
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }
     }
 
